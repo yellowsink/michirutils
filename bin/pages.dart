@@ -2,7 +2,7 @@ final stylesheet = """
 
 """;
 
-String _template(String page) => """
+String _template(String page, [String head = ""]) => """
   <!DOCTYPE html>
   <html lang="en">
     <head>
@@ -20,4 +20,13 @@ String _template(String page) => """
 
 final mainPage = _template("""
   <h1>Michirutils</h1>
+  <iframe src="status" />
 """);
+
+var _debugCount = 0;
+
+String statusPage() => _template("""
+    ${_debugCount++}
+  """,
+  '<meta http-equiv="refresh" content="10"'
+);

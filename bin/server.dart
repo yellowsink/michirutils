@@ -8,8 +8,9 @@ import 'pages.dart' as pages;
 
 final router = Router()
   // static stuff
-  ..get('/', () => Response.ok(pages.mainPage))
-  ..get('/style.css', () => Response.ok(pages.stylesheet));
+  ..get('/', (_) => Response.ok(pages.mainPage))
+  ..get('/style.css', (_) => Response.ok(pages.stylesheet))
+  ..get('/status', (_) => Response.ok(pages.statusPage()));
 
 void main(List<String> args) async {
   // For running in containers, respect the PORT environment variable.
