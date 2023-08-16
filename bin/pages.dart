@@ -45,6 +45,45 @@ iframe { border: none }
   height: 1px;
   width: var(--p);
 }
+
+.action-container {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.75rem 1rem;
+}
+
+.action-container form { display: contents }
+
+.action-container input {
+  background: none;
+  color: currentColor;
+  border: none;
+  border-bottom: 1px solid #555;
+}
+
+.action-container button {
+  background: none;
+  color: currentColor;
+  border: none;
+  transition: border-color 250ms;
+  border-bottom: 1px solid transparent;
+  cursor: pointer;
+}
+
+.action-container button::after {
+  content: ' ';
+  display: inline-block;
+  width: .75em;
+  height: .75em;
+  border-top: 1px solid #555;
+  border-right: 1px solid #555;
+  rotate: 45deg;
+  transition: border-color 250ms;
+}
+
+.action-container button:hover, .action-container button:hover::after {
+  border-color: currentColor;
+}
 """;
 
 String _template(String page, [String head = ""]) => """
@@ -66,7 +105,14 @@ String _template(String page, [String head = ""]) => """
 
 final mainPage = _template("""
   <h1>Michirutils</h1>
-  <iframe src="status" id="statusframe" />
+  <iframe src="status" id="statusframe"></iframe>
+  <h2>Start a task:</h2>
+  <div class="action-container">
+    <form action="pingpingu">
+      <input type="password" name="pass" placeholder="Password" />
+      <button type="submit">Pingpingu</button>
+    </form>
+  </div>
 """);
 
 String statusPage() => _template(
